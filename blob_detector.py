@@ -22,7 +22,7 @@ class Pixel:
 
     def __repr__(self):
         output = "pixel coordinates" + "\n"
-        output += (self.x, self.y)
+        output += str(self.x) + " " + str(self.y)
         return output
 
     def is_on_image_border(self) -> bool:
@@ -55,15 +55,15 @@ class Pixel:
             return False
         return True
 
-    def get_neighbor(self, direction: 'str') -> Pixel:
+    def get_neighbor(self, direction: 'str'):
         if direction is 'left':
             return Pixel(self.x - 1, self.y, self.image)
         if direction is 'right':
             return Pixel(self.x + 1, self.y, self.image)
         if direction is 'down':
-            return Pixel(self.x - 1, self.y, self.image)
+            return Pixel(self.x, self.y - 1, self.image)
         if direction is 'up':
-            return Pixel(self.x + 1, self.y, self.image)
+            return Pixel(self.x, self.y + 1, self.image)
         return None
 
 
@@ -80,12 +80,13 @@ class Blob:
         self.image = image
         self.index = index
         self.area = area
-        self.pixels = [seed_pixel]
+        self.seed_pixel = seed_pixel
+        self.pixels = []
 
     def __repr__(self):
         output = "blob :" + "\n"
-        output += "area" + str(self.area) + "\n"
-        output += "seed_pixel" + self.seed_pixel + "\n"
+        output += "area " + str(self.area) + "\n"
+        output += "seed_" + self.seed_pixel.__repr__() + "\n"
         return output
 
     def grow(self, pixel: Pixel):
@@ -107,4 +108,3 @@ class Blob:
             self.grow(pixel.get_neighbor('right'))
             self.grow(pixel.get_neighbor('up'))
             self.grow(pixel.get_neighbor('down'))
-        return
