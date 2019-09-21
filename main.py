@@ -20,12 +20,10 @@ if __name__ == '__main__':
             pixel = Pixel(x=pix[0], y=pix[1], image=image)
             if pixel.value != 1:
                 continue
-            blob = Blob(image, index=p, area=0)
+            blob = Blob(image, index=p+2, seed_pixel=pixel, area=0)
             blob.grow(pixel)
             if blob.area > 400:
                 list_blobs.append(blob)
 
     print("number of blobs detected ", len(list_blobs))
 
-    for blob in list_blobs:
-        print(blob)
