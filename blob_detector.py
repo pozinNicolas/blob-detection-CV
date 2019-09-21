@@ -5,7 +5,9 @@ blob detector
 
 import numpy as np
 import sys
+
 sys.setrecursionlimit(1000000)
+
 
 class Pixel:
     """
@@ -46,13 +48,13 @@ class Pixel:
         returns True if self is four-connected, else False
         :return:
         """
-        if self.image[self.x - 1, self.y] < 1:
+        if self.image[self.x - 1, self.y] == 0:
             return False
-        if self.image[self.x + 1, self.y] < 1:
+        if self.image[self.x + 1, self.y] == 0:
             return False
-        if self.image[self.x, self.y + 1] < 1:
+        if self.image[self.x, self.y + 1] == 0:
             return False
-        if self.image[self.x, self.y - 1] < 1:
+        if self.image[self.x, self.y - 1] == 0:
             return False
         return True
 
@@ -97,12 +99,14 @@ class Blob:
         :return:
         """
         if pixel.value != 1:
-            # zero intensity region or already explored pixel
+            # zero intensity pixel or pixels already assigned to a blob
             return
         if pixel.is_on_image_border():
             return
         if pixel.is_four_connected():
-            self.image[pixel.x, pixel.y] = self.index
+            # NB : for the sake of recursion, pixels assigned to a blob have to be stored someway.
+            # For efficiency purpose, we arbitrarily set its value to -1
+            self.image[pixel.x, pixel.y] = -1
             self.pixels.append(pixel)
             self.area += 1  # a pixel has been added to the blob
             self.grow(pixel.get_neighbor('left'))
