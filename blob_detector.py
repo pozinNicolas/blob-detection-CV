@@ -3,6 +3,8 @@
 blob detector
 """
 
+import numpy as np
+
 
 class Pixel:
     """
@@ -12,10 +14,11 @@ class Pixel:
     def __init__(self,
                  x: int,
                  y: int,
-                 image: 'numpy.ndarray'):
+                 image: 'np.ndarray'):
         self.x = x
         self.y = y
         self.image = image
+        self.value = image[x, y]
 
     def __repr__(self):
         output = "pixel coordinates" + "\n"
@@ -70,12 +73,20 @@ class Blob:
     """
 
     def __init__(self,
-                 image: 'numpy.ndarray',
+                 image: 'np.ndarray',
                  index: int,
+                 seed_pixel: Pixel,
                  area: int = 0):
         self.image = image
         self.index = index
         self.area = area
+        self.pixels = [seed_pixel]
+
+    def __repr__(self):
+        output = "blob :" + "\n"
+        output += "area" + str(self.area) + "\n"
+        output += "seed_pixel" + self.seed_pixel + "\n"
+        return output
 
     def grow(self, pixel: Pixel):
         """
@@ -83,18 +94,17 @@ class Blob:
         :param pixel:
         :return:
         """
-        if self.image[pixel.x, pixel.y] != 1:
+        if pixel.value != 1:
             # zero intensity region or already explored pixel
             return
-        if is_border(x, y, im):
+        if pixel.is_on_image_border():
             return
-        if four_connected(x, y, im):
+        if pixel.is_four_connected():
             self.image[pixel.x, pixel.y] = self.index
+            self.pixels.append(pixel)
             self.area += 1  # a pixel has been added to the blob
-            grow(pixel.get_neighbor('left'))
-            grow(pixel.get_neighbor('right'))
-            grow(pixel.get_neighbor('up'))
-            grow(pixel.get_neighbor('down'))
+            self.grow(pixel.get_neighbor('left'))
+            self.grow(pixel.get_neighbor('right'))
+            self.grow(pixel.get_neighbor('up'))
+            self.grow(pixel.get_neighbor('down'))
         return
-
-
