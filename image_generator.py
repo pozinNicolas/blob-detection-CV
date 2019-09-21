@@ -9,7 +9,7 @@ import random
 # global parameter
 IMAGE_SIZE = 2500
 BLOB_AVERAGE_SIZE = 50
-NUMBER_OF_BLOBS = 1
+NUMBER_OF_BLOBS = 100
 BLOB_DETECTION_SIZE = 400
 
 
@@ -36,8 +36,9 @@ def set_rectangle_block(img: 'np.ndarray') -> bool:
         return False
 
     img[x:x_max + 1, y:y_max + 1] = 1
-
-    return (x_max - x - 2) * (y_max - y - 2) >= BLOB_DETECTION_SIZE
+    blob_area = (x_max - x - 1) * (y_max - y - 1)  # remove borders for area of 4-connected blob
+    print("blob generated area", blob_area)
+    return blob_area >= BLOB_DETECTION_SIZE
 
 
 def generate_image() -> 'np.ndarray':
