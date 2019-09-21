@@ -4,7 +4,8 @@ blob detector
 """
 
 import numpy as np
-
+import sys
+sys.setrecursionlimit(1000000)
 
 class Pixel:
     """
