@@ -13,7 +13,7 @@ NUMBER_OF_BLOBS = 1
 BLOB_DETECTION_SIZE = 400
 
 
-def set_rectangle_block(img: 'numpy.ndarray') -> bool:
+def set_rectangle_block(img: 'np.ndarray') -> bool:
     """
     insert a rectangle in img at random position and with random dimensions
     :param img:
@@ -40,7 +40,7 @@ def set_rectangle_block(img: 'numpy.ndarray') -> bool:
     return (x_max - x - 2) * (y_max - y - 2) >= BLOB_DETECTION_SIZE
 
 
-def generate_image() -> 'numpy.ndarray':
+def generate_image() -> 'np.ndarray':
     """
 
     :return:
