@@ -5,8 +5,6 @@ image generator module : generate sysnthetic image for blob detector test prurpo
 
 import numpy as np
 import random
-import matplotlib
-from PIL import Image
 
 # global parameter
 IMAGE_SIZE = 2500
@@ -42,7 +40,7 @@ def set_rectangle_block(img: 'numpy.ndarray') -> bool:
     return (x_max - x - 2) * (y_max - y - 2) >= BLOB_DETECTION_SIZE
 
 
-def generate_image():
+def generate_image() -> 'numpy.ndarray':
     """
 
     :return:
@@ -53,5 +51,3 @@ def generate_image():
         nb_blobs_detectable += set_rectangle_block(img)
     print("number of detectable blobs in the synthetic image", nb_blobs_detectable)
     return img
-
-
