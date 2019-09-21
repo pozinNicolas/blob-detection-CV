@@ -1,0 +1,57 @@
+# coding=utf-8
+"""
+image generator module : generate sysnthetic image for blob detector test prurpose
+"""
+
+import numpy as np
+import random
+import matplotlib
+from PIL import Image
+
+# global parameter
+IMAGE_SIZE = 2500
+BLOB_AVERAGE_SIZE = 50
+NUMBER_OF_BLOBS = 1
+BLOB_DETECTION_SIZE = 400
+
+
+def set_rectangle_block(img: 'numpy.ndarray') -> bool:
+    """
+    insert a rectangle in img at random position and with random dimensions
+    :param img:
+    :return:
+    """
+
+    # lower left corner of the rectangle
+    x = random.randint(0, IMAGE_SIZE - 1)
+    y = random.randint(0, IMAGE_SIZE - 1)
+    # dimensions of the rectangle
+    size_x = random.randint(1, BLOB_AVERAGE_SIZE)
+    size_y = random.randint(1, BLOB_AVERAGE_SIZE)
+
+    # upper right corner  of the rectangle - NB the rectangle fits in the image
+    x_max = min(IMAGE_SIZE - 1, x + size_x)
+    y_max = min(IMAGE_SIZE - 1, y + size_y)
+
+    # the rectangle does not overlapp an existing rectangle
+    if (np.max(img[x:x_max + 1, y:y_max + 1])) == 1:
+        return False
+
+    img[x:x_max + 1, y:y_max + 1] = 1
+
+    return (x_max - x - 2) * (y_max - y - 2) >= BLOB_DETECTION_SIZE
+
+
+def generate_image():
+    """
+
+    :return:
+    """
+    img = np.zeros((IMAGE_SIZE, IMAGE_SIZE))
+    nb_blobs_detectable = 0
+    for i in range(NUMBER_OF_BLOBS):
+        nb_blobs_detectable += set_rectangle_block(img)
+    print("number of detectable blobs in the synthetic image", nb_blobs_detectable)
+    return img
+
+
