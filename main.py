@@ -16,7 +16,7 @@ if __name__ == '__main__':
     list_blobs = []
     non_zeros = np.where(image == 1)
     if not non_zeros:
-        print("no blob")
+        print("no blob in the image")
     else:
         non_zero_pixels = list(
             zip(non_zeros[0], non_zeros[1]))  # list of tuples with non zeros pixel coords
