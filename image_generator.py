@@ -37,7 +37,6 @@ def set_rectangle_block(img: 'np.ndarray') -> bool:
 
     img[x:x_max + 1, y:y_max + 1] = 1
     blob_area = (x_max - x - 1) * (y_max - y - 1)  # remove borders for area of 4-connected blob
-    print("blob generated area", blob_area)
     return blob_area >= BLOB_DETECTION_SIZE
 
 
