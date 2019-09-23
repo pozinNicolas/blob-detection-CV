@@ -19,8 +19,10 @@ python main.py -p image_path -bs blob_size -bi blob_intensity
 
 
 ### TODO (some ideas)
+- [ ] make more tests
 - [ ] work on blob representation
 - [ ] implement parallel blob detection for faster treatment
+- [ ] implement other methods for comparison - e.g Suzuki, 1985 (cf. opencv)
 
 
 ### illustration 
