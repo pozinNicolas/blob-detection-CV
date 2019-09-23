@@ -129,6 +129,9 @@ class Blob:
 
 
 class BlobDetector:
+    """
+    Blob Detector
+    """
 
     def __init__(self,
                  image_path: 'str',
@@ -153,7 +156,7 @@ class BlobDetector:
 
     def mask(self, image_array: 'np.ndarray') -> 'np.ndarray':
         """
-
+        returns masks of the image array
         :param image_array:
         :return:
         """
@@ -163,7 +166,8 @@ class BlobDetector:
 
     def apply(self) -> List['Blob']:
         """
-
+        generates list of all blobs in the image specified by self.image_path
+        only blobs with size>=blob_size, intensity = blob_intensity are considered
         :return:
         """
         image_array = self.mask(self.load())
