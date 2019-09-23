@@ -30,7 +30,7 @@ Input image            |  Image with kept detected blobs only
 [image](data/blobs.tif) |  [image](data/blobs_detected.tif)
 
 
-
+### author 
 Nicolas Pozin (23/09/19)
 
 
