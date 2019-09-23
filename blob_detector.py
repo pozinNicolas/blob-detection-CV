@@ -105,7 +105,10 @@ class Blob:
             return
         if pixel.is_four_connected():
             # NB : for the sake of recursion, pixels assigned to a blob have to be stored someway.
-            # For efficiency purpose, we arbitrarily set its value to -1
+            # for each encountered pixel, we could check it belongs or not to an incremented list
+            # of already assigned pixels
+            # For efficiency purpose, we rather set the value of assigned pixels to a given
+            # arbitrary number (here -1). Tests are thus made much faster.
             self.image[pixel.x, pixel.y] = -1
             self.pixels.append(pixel)
             self.area += 1  # a pixel has been added to the blob
