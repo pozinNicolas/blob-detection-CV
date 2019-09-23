@@ -5,6 +5,7 @@ image generator module : generate synthetic image for blob detector test purpose
 
 import numpy as np
 import random
+from PIL import Image
 
 # global parameter
 IMAGE_SIZE = 2500
@@ -40,9 +41,9 @@ def set_rectangle_block(img: 'np.ndarray') -> bool:
     return blob_area >= BLOB_DETECTION_SIZE
 
 
-def generate_image() -> 'np.ndarray':
+def generate_image(file_name: 'str'):
     """
-
+    generate synthetic image with blobs - for test purpose
     :return:
     """
     img = np.zeros((IMAGE_SIZE, IMAGE_SIZE))
@@ -50,4 +51,10 @@ def generate_image() -> 'np.ndarray':
     for i in range(NUMBER_OF_BLOBS):
         nb_blobs_detectable += set_rectangle_block(img)
     print("number of detectable blobs in the synthetic image", nb_blobs_detectable)
-    return img
+
+    path = 'data/' + file_name
+    image = Image.fromarray(np.uint8(img * 255), 'L')
+    image.save(path)
+
+
+generate_image('toto.tif')
