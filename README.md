@@ -7,7 +7,7 @@ Blob detection algorithm : detects four-connected blobs with given size and inte
 python main.py -p image_path -bs blob_size -bi blob_intensity
 ```
 
-*data : folder with tiff image for test
+* data : folder with tiff image for test
 
 
 ### TODO (some ideas)
