@@ -6,7 +6,7 @@ from blob_detector import BlobDetector
 
 def blob_detector_test():
     """
-    Test : blobs.tif shall contain 51 blobs of intensiey = 255 and size >=400
+    Test : blobs.tif shall contain 51 blobs of intensity = 255 and size >=400
     :return:
     """
 
