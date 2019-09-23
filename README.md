@@ -17,6 +17,6 @@ python main.py -f file_path -bs blob_size -bi blob_intensity
 
 Input image            |  Image with kept detected blobs only
 :-------------------------:|:-------------------------:
-[Input image](data/blobs.tif) |  [Image with kept detected blobs only](data/blobs_detected.tif)
+[link](data/blobs.tif) |  [link](data/blobs_detected.tif)
 
 
