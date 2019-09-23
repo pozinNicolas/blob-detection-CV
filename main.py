@@ -25,12 +25,11 @@ if __name__ == '__main__':
     blob_size = int(args.blob_size)
     blob_intensity = int(args.blob_intensity)
 
-
     ######### blob detection #########
     to = time.time()
 
     # detects all blobs with given size and intensity in a tif image
-    blob_detector = BlobDetector(image_path='data/blobs.tif', blob_size=blob_size,
+    blob_detector = BlobDetector(image_path=image_path, blob_size=blob_size,
                                  blob_intensity=blob_intensity)
     list_detected_blobs = blob_detector.apply()
 
