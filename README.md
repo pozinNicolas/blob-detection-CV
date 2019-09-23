@@ -9,7 +9,7 @@ python main.py -f file_path -bs blob_size -bi blob_intensity
 ```
 
 ### TODO (some ideas)
-- [ ] work on blob reprensentation
+- [ ] work on blob representation
 - [ ] implement parallel blob detection for faster treatment
 
 
