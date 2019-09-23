@@ -160,8 +160,10 @@ class BlobDetector:
         :param image_array:
         :return:
         """
-        image_array_masked = image_array == self.blob_intensity
-        image_array_masked = Image.fromarray(np.uint8(image_array_masked), 'L')
+        tmp = image_array == self.blob_intensity
+        tmp = Image.fromarray(np.uint8(tmp), 'L')
+        image_array_masked = np.asarray(tmp, dtype="int32")
+
         return image_array_masked
 
     def apply(self) -> List['Blob']:
@@ -172,7 +174,6 @@ class BlobDetector:
         """
         image_array = self.mask(self.load())
         list_blobs = []
-
         non_zeros = np.where(image_array == 1)
         if not non_zeros:
             print("no blob in the image")
@@ -188,4 +189,8 @@ class BlobDetector:
             if blob.area > self.blob_size:
                 list_blobs.append(blob)
 
+        print(len(list_blobs), " have been detected in the image")
+
         return list_blobs
+
+
