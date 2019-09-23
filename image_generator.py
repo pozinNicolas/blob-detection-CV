@@ -1,6 +1,6 @@
 # coding=utf-8
 """
-image generator module : generate sysnthetic image for blob detector test prurpose
+image generator module : generate synthetic image for blob detector test purpose
 """
 
 import numpy as np
