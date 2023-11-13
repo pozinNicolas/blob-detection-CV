@@ -1,4 +1,4 @@
-# biocarbon - technical test
+# blob detection
 
 Blob detection algorithm : detects four-connected blobs with given size and intensity on a single band tiff image.
 
